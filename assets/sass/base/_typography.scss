@@ -1,0 +1,94 @@
+body{
+    font-family: 'Poppins', sans-serif !important;
+
+    font-weight: 300;
+    line-height: 1.7 ;
+    color: #fff !important;
+  
+   
+}
+.heading-primary{
+    text-transform: uppercase;
+    backface-visibility: hidden;
+
+
+    &--main{
+ 
+        font-size: 3.2rem !important;
+        font-weight: 500 !important;
+
+
+        color: #f7faff !important;
+        letter-spacing: .2rem;
+   
+       
+  
+        @include respond(tab-port) {
+            font-size: 3.4rem;
+        }
+    }
+    &--sub{
+        color: white;
+        font-size: 2rem;
+        @include respond(tab-port) {
+            font-size: 2rem;
+        }
+
+    }
+}
+.font-size-1{
+
+    font-size: 1.5rem
+}
+.font-size-2{
+
+    font-size: 1.8rem;
+    font-weight: 400 !important;
+    font-style: normal;
+
+}
+.font-size-3{
+    font-size: 3.2rem;
+    font-weight: 600;
+    font-family: 'Open sans',sans-serif;
+
+}
+
+
+.heading-secondary{
+    font-family: 'Itim', cursive !important;
+    font-size: 4.4rem;
+
+    font-weight: 600;
+    display: inline-block;
+    
+    letter-spacing: .2rem;
+    transition: all .2s;
+
+}
+.heading-tertiary{
+    
+
+
+    font-size: 4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #1e2022
+    
+}
+
+.paragraph{
+    font-size: 1.6rem;
+    font-family: 'Open Sans', sans-serif !important;
+    font-weight: 400;
+    color: #fff;
+}
+.paragraph-medium{
+    font-size: 2rem;
+    font-weight: 400;
+    color: #333333;
+}
+.text-main{
+    color: $color-primary
+}
+
