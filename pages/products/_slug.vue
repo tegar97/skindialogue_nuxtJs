@@ -31,10 +31,10 @@
                 </div>
             </div>
            <div class="col-12 text-center mt-5 pagination-box " >
-             <pagination :currentPage="currentPage" :totalProps="filterProduct.length" :perPageProps="perPage" :getPostData="getPostData"/>
+             <pagination :currentPage="currentPage" :totalProps="totalData" :perPageProps="perPage" :getPostData="getPostData" />
               
            </div>
-              <p class="mt-3 ml-3 text-dark">Current Page: {{ currentPage }}</p>
+              <p class="mt-3 ml-3 text-dark">Current Page: {{ totalData }}</p>
 
           </div>
         </div>
@@ -54,7 +54,7 @@ export default{
            perPage : 16,
            currentPage: 1,
            isLoading: false,
-           totalData: 60,
+         
            meta: [],
            categorySlug : this.$route.params.slug
    
@@ -63,13 +63,13 @@ export default{
    },
  
  
-    // async asyncData() {
-    //     const {data} = await axios.get(`https://dev-api.skindialogue.id/api/v1/public/products?page=1&limit=16`)
-    //     return { products : data.data}
+     async asyncData({route}) {
+      
+        const {data} = await axios.get(`https://dev-api.skindialogue.id/api/v1/public/products?category=${route.params.slug}`)
+        return { totalData : data.meta.total}
       
       
-    // },
-    
+    },
 
     methods: {
       getPostData(currentPage) {

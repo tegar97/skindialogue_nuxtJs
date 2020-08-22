@@ -12,9 +12,7 @@
                       <div class="col-lg-4 col-sm-6 mb-md-5 mb-3 " v-for="artikel in artikels" :key="artikel.id" >
                               <blog-card :artikel="artikel"/>
                       </div>
-                    <div class="col-12 text-center mt-5 pagination-box " v-if="totalData >= 6"> 
-                                  <pagination :currentPage="currentPage" :totalProps="totalData" :perPageProps="perPage" :getPostData="getPostData"/>
-                    </div>
+                    
               
 
                     </div>
@@ -33,47 +31,26 @@ export default{
        return{
            search : '',
            artikels: [],
+        
            perPage : 6,
            currentPage: 1,
             
-           totalData: null,
+           totalData: 10,
            meta: [],
+           errors : [   ]
    
          
        }
    },
-    methods: {
-      getPostData(currentPage) {
+      mounted : function(){
 
-          axios.get(`http://localhost:4000/api/v1/artikel?limit=${this.perPage}&page=${currentPage}` )
-          .then(res => (this.artikels = res.data.data))
+          console.log(this.$route.params.slug)
+          axios.get(`http://localhost:4000/api/v1/category/${this.$route.params.slug}` )
+          .then(res => (this.artikels = res.data.category[0].artikel))
           .catch(e => {this.errors.push(e)})
 
-          
-       
-
-      
-     
-         
-
          }
-         
-    
-        
-      
-      
-    },
-    mounted(currentPage) {
-        axios.get(`http://localhost:4000/api/v1/artikel` )
-        .then(res => (this.totalData = res.data.total))
-        .catch(e => {this.errors.push(e)})
-
-          
-      this.getPostData(currentPage)
-      
-   
-    },
-    
+           
 
 }
 </script>

@@ -10,9 +10,15 @@
                  <div class="row ">
                      
                     <div class="col-12  col-md-8 mb-5 ">
-                        <span class="text-dark paragraph">Tags :</span>
-                        <div class="btn btn-light ml-2">TIPS KESEHATAN</div>
+                           <div class="d-flex">
+                        <span class="text-dark paragraph">  Category :</span>
+                        <div v-for="category in categories" :key="category.id">
 
+                 
+                            <nuxt-link   v-bind:to="'/blogs/category/'+category.categorySlug" class="btn btn-secondary-2 mr-2 btn-lg">{{category.categoryName}}({{category.artikel.length}})</nuxt-link>
+        
+                        </div>
+                        </div>
                     </div>
                     <div class="col-md-4">
                       <form action="#" class="search">
@@ -51,7 +57,7 @@
                 <section class="article-section mt-5">
                     <div class="heading mb-5">
                          <h2 class="heading-secondary text-dark font-size-2" >Latest News</h2>
-                         <a class="btn--text">Learn more &rarr;</a>
+                         <nuxt-link  to="/blogs/all" class="btn--text">Learn more &rarr;</nuxt-link>
                     </div>
                     <div class="row">
                       <div class="col-lg-4 col-sm-6 mb-md-5 mb-3 " v-for="artikel in artikels" :key="artikel.id" >
@@ -70,15 +76,32 @@
 import axios from 'axios';
 
 export default{
+    data() {
+        return {
+            categories : []
+        }   
+    },
     async asyncData() {
         
         const {data} = await axios.get('http://localhost:4000/api/v1/artikel?limit=6')
-        return { artikels : data.data.artikel }
+        return { artikels : data.data }
+
+      
+
+  
       
    
     },
-    
 
+    
+    mounted: function() {
+        axios.get('http://localhost:4000/api/v1/category?limit=4')
+        .then(res => (this.categories =  res.data.data  ))
+        .catch(e => {this.errors.push(e)})
+
+
+        console.log(this.categories)
+    }
 }
 </script>
 <style lang="scss" scoped>
@@ -185,5 +208,15 @@ export default{
     display: flex;
     justify-content: space-between;
     align-items:center;
+}
+.btn-secondary-2{
+    
+    color: #71869d;
+    background-color: rgba(113, 134, 157, 0.1);;
+    border-color: transparent;
+    &:hover{
+           background-color: rgba(113, 134, 157, 1);
+           color: white;
+    }
 }
 </style>

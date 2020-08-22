@@ -15,7 +15,11 @@
                 <div v-if="product">
                       <productCard :product="product"/> 
                 </div>
+               
 
+              </div>
+              <div  v-if="!products.length">
+                  <h1>Tidak ada data</h1>
               </div>
 
 
@@ -55,6 +59,7 @@ export default{
      productCard
    },
     async asyncData() {
+        
         const {data} = await axios.get('https://dev-api.skindialogue.id/api/v1/public/products?page=1&limit=6')
         return { products : data.data }
    

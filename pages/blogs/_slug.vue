@@ -6,16 +6,12 @@
                     <div class="blog">
                             <h1 class="text-dark blog__title">{{blogs.title}}</h1>
                             <div class="blog__date">
-                                     <span class="text-muted paragraph">Jul 03 2020</span>
+                                     <span class="text-muted paragraph"> {{`${new Date(blogs.date).toUTCString().split(' ').slice(0, 4).join(' ')}`}}</span>
                             </div>
                             <div class="blog__content">
                                 <img :src="'http://localhost:4000/img/thumbnail/' + blogs.thumbnail" class="blog__content-image">
                                 <div class="content mt-5">
-                                    <p class="blog__content-text">Bagaimana cara menghilangkan jerawat? Menghilangkan jerawat tidak selalu menggunakan produk kimia. Daripada menghabiskan banyak uang dan hasilnya belum pasti, mari kita coba cara menghilangkan jerawat secara alami dan cepat.Cara menghilangkan jerawat secara alami banyak sekali metode dan bahannya, salah satu yang paling efektif adalah dengan menggunakan masker.</p>
-                                    <br>
-                                    <p class="blog__content-text">Produk masker pun ada yang bisa dibuat secara alami ada pula buatan pabrik yang menjamin bisa menjadi cara menghilangkan jerawat secara alami dalam waktu 1 hari saja. Namun, produk buatan sendiri bisa Kamu coba di awal, karena lebih terjamin kehigienisannya dan tentu lebih ramah di kantong. Berikut adalah beberapa cara yang bisa kamu coba :</p>
-                                    <br>
-                                    <h4 class="text-dark font-weight-bold font-size-2">1. Cara menghilangkan jerawat secara alami dengan masker soda kue dan air</h4>
+                                
                                      <p class="blog__content-text" v-html="blogs.content">
                                      
                                      </p>
@@ -29,20 +25,23 @@
                 <div class="col-md-4">
                     <div class="categories mb-5">
                         <span class="text-dark paragraph font-weight-bold mb-3">Categories</span>
-                        <div class="d-flex flex-row" v-for="categories in blogs.category" :key="categories.id">
-                            <a class="btn btn-secondary-2 mr-2 btn-lg">{{categories.categoryName}}(4) </a>
+                        <div class="row ">
+                            <div class="col-lg-4"  v-for="categories in blogs.category" :key="categories.id">
+                                  <nuxt-link  v-bind:to="'/blogs/category/'+categories.categorySlug" class="btn btn-secondary-2 mr-2 btn-lg">{{categories.categoryName}}({{categories.artikel.length}}) </nuxt-link>
+                            </div>
+                          
                            
                         </div>
                
                     </div>
-                    <div class="tags">
+                    <!-- <div class="tags">
                         <span class="text-dark paragraph font-weight-bold mb-3">Tags</span>
                         <div class="d-flex">
                             <a class="btn btn-secondary-2 mr-2 btn-lg">kecatikan(4) </a>
                             <a class="btn btn-secondary-2 mr-2  btn-lg">kecatikan(4) </a>
                         </div>
                
-                    </div>
+                    </div> -->
                     <div class="latest-article mt-5">
                         <div class="row">
                             <div class="col-12 mb-4">

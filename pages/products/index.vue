@@ -31,10 +31,10 @@
                 </div>
             </div>
            <div class="col-12 text-center mt-5 pagination-box " >
-             <pagination :currentPage="currentPage" :totalProps="totalData" :perPageProps="perPage" :getPostData="getPostData"/>
+             <pagination :currentPage="currentPage" :totalProps="totalData" :perPageProps="15" :getPostData="getPostData"/>
               
            </div>
-              <p class="mt-3 ml-3 text-dark">Current Page: {{ currentPage }}</p>
+              <p class="mt-3 ml-3 text-dark">Current Pagsse: {{totalData}}</p>
 
           </div>
         </div>
@@ -51,26 +51,28 @@ export default{
            search : '',
            products: [],
            brandName : 'brand-consequatur-aliquid',
-           perPage : 16,
            currentPage: 1,
            isLoading: false,
-           totalData: 60,
-           meta: [],
+           totalData: null,
+           meta: [], 
+           
    
          
        }
    },
  
  
-    // async asyncData() {
-    //     const {data} = await axios.get(`https://dev-api.skindialogue.id/api/v1/public/products?page=1&limit=16`)
-    //     return { products : data.data}
+    async asyncData() {
+      
+        const {data} = await axios.get(`https://dev-api.skindialogue.id/api/v1/public/products`)
+        return { totalData : data.meta.total}
       
       
-    // },
+    },
     
 
     methods: {
+    
       getPostData(currentPage) {
          this.isLoading = true
           axios.get(`https://dev-api.skindialogue.id/api/v1/public/products?page=${currentPage}` )
@@ -100,8 +102,11 @@ export default{
       
     },
     mounted(currentPage) {
-  
       this.getPostData(currentPage)
+
+    
+
+    
    
     },
    

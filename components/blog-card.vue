@@ -14,7 +14,7 @@
          <p class="paragraph text-secondary" style="height: 125px; overflow: hidden" :content="strippedContent">
             {{strippedContent.substring(0,120) +  `....`}}
          </p>
-         <p class="card-text text-right text-muted">{{}} </p>
+         <p class="card-text text-right text-muted">{{`${new Date(artikel.date).toUTCString().split(' ').slice(0, 4).join(' ')}`}} </p>
        </div>
      </div>
 </nuxt-link>
