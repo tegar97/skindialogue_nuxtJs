@@ -18,7 +18,7 @@
         <b-container>
             <div class="row">
                 <div class="col-lg-6 ">
-                    <img src="./../../assets/images/BannerNoPhoto.png" class="hero__image" >
+                    <img src="./../../assets/images/BannerNoPhoto.png" class="hero__image"  alt="no photo">
                 </div>
                 <div class="col-lg-6  ">
                     <div class="carousel__text-box">

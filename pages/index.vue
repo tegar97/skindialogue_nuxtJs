@@ -34,7 +34,7 @@
         </section>
         <partner />
         <Reseller />
-        <blog />
+        <blog :artikels="artikels"/>
         <categories />
         <courier />
       </div>
@@ -51,8 +51,27 @@ export default{
        return{
            search : '',
            products: [],
+           artikels   :[],
+           title : 'SKIN DIA/LO/GUE Official'
          
        }
+   },
+   head() {
+      return {
+        title: this.title,
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: 'SKIN DIA/LO/GUE adalah platform sistem pemasaran produk (barang dan jasa) dengan menggunakan skema Reseller – Distributor.'
+          },
+          {
+            hid: 'site_name',
+            name: 'site_name',
+            content: 'SKIN DIA/LO/GUE Official'
+          }
+        ]
+      }
    },
    
    components:{
@@ -62,11 +81,14 @@ export default{
         
         const {data} = await axios.get('https://dev-api.skindialogue.id/api/v1/public/products?page=1&limit=6')
         return { products : data.data }
-   
-
-
 
     },
+    mounted: function() {
+         axios.get('http://localhost:4000/api/v1/artikel?limit=3')
+        .then(res => (this.artikels =  res.data.data  ))
+        .catch(e => {this.errors.push(e)})
+
+    }
 
     
 

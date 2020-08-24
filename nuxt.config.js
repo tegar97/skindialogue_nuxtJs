@@ -4,7 +4,7 @@ export default {
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
   */
-  mode: 'spa',
+  mode: 'universal',
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
@@ -23,10 +23,10 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || 'SKIN DIA/LO/GUE Official' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: './assets/images/favicon.ico' },
       {rel:"stylesheet",href:"https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap"},
       {rel:"stylesheet",href:"https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap"},
       {rel:"stylesheet",href:"https://fonts.googleapis.com/css2?family=Itim&display=swap"},

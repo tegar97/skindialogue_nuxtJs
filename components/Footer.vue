@@ -58,10 +58,7 @@
           </div>
           <div class="col-12 col-md-1   mb-5  ">
             <div class="row">
-              <div class="col-9">
-                  <img src="./../assets/images/Callcenter.png" class="footer__whatsapp " alt="whaatsapp">
-              
-              </div>
+             
               
                 
             </div>
